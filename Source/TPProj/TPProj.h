@@ -9,5 +9,6 @@ enum class TPProjAbilityID : uint8
 {
 	None UMETA(DisplayName = "None"),
 	Confirm UMETA(DisplayName = "Confirm"),
-	Cancel UMETA(DisplayName = "Cancel")
+	Cancel UMETA(DisplayName = "Cancel"),
+	Ability1 UMETA(DisplayName = "Ability1")
 };
