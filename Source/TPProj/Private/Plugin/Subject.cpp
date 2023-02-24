@@ -29,9 +29,9 @@ void Subject::removeObserver(Observer* observer)
 
 void Subject::notify()
 {
-	//for (int i = 1; i <= numObservers_; i++)
-	//{
-	//	observers_[i]->onNotify();
-	//}
+	for (int i = 1; i <= numObservers_; i++)
+	{
+		observers_[i]->onNotify();
+	}
 }
 
