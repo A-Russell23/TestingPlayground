@@ -14,8 +14,8 @@ UCharacterGameplayAbility::UCharacterGameplayAbility()
 	ActivationBlockedTags.AddTag(FGameplayTag::RequestGameplayTag(FName("State.Debuff.Stun")));
 	
 
-	//UGasMonitoringSubsystem* GasMonitoringSubsystem = GEngine->GetEngineSubsystem<UGasMonitoringSubsystem>();
-	//addObserver(GasMonitoringSubsystem);
+	UGasMonitoringSubsystem* GasMonitoringSubsystem = GEngine->GetEngineSubsystem<UGasMonitoringSubsystem>();
+	addObserver(GasMonitoringSubsystem);
 	
 	
 	//UGameInstance* GameInstance = Cast<UGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
