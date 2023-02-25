@@ -34,6 +34,7 @@ public:
 
 	virtual void RemoveCharacterAbilities();
 
+	UFUNCTION(BlueprintCallable, Category = "TPProj|Character")
 	virtual void Die();
 
 	UFUNCTION(BlueprintCallable, Category = "TPProj|Character")

@@ -4,7 +4,9 @@
 #include "CoreMinimal.h"
 #include "AttributeSet.h"
 #include "AbilitySystemComponent.h"
+#include "Plugin/Subject.h"
 #include "CharacterAttributeSetBase.generated.h"
+
 
 // Uses macros from AttributeSet.h
 #define ATTRIBUTE_ACCESSORS(ClassName, PropertyName) \
@@ -14,7 +16,7 @@
 	GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
 UCLASS()
-class TPPROJ_API UCharacterAttributeSetBase : public UAttributeSet
+class TPPROJ_API UCharacterAttributeSetBase : public UAttributeSet, public Subject
 {
 	GENERATED_BODY()
 
@@ -52,4 +54,8 @@ public:
 	virtual void OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana);
 
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+
+	// Begin Subject
+	void updateEntity();
+	//End Subject
 };

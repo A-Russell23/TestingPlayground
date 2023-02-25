@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Abilities/GameplayAbility.h"
+#include "Plugin/Subject.h"
 #include "TPProj/TPProj.h"
 
 #include "CharacterGameplayAbility.generated.h"
@@ -13,7 +14,7 @@
  * 
  */
 UCLASS()
-class TPPROJ_API UCharacterGameplayAbility : public UGameplayAbility
+class TPPROJ_API UCharacterGameplayAbility : public UGameplayAbility, public Subject
 {
 	GENERATED_BODY()
 	
@@ -30,4 +31,9 @@ public:
 	bool ActivateAbilityOnGranted = false;
 
 	virtual void OnAvatarSet(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec) override;
+
+	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
+
+	UFUNCTION(BlueprintCallable)
+	void updateEntity(FString ability);
 };
