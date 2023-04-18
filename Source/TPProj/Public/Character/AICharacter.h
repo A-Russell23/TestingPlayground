@@ -19,6 +19,10 @@ public:
 	AICharacter(const FObjectInitializer& ObjectInitializer);
 
 	virtual void PossessedBy(AController* NewController) override;
+	
+	float GetHealth() const;
+	
+	float GetMaxHealth() const;
 
 protected:
 	bool ASCInputBound = false;

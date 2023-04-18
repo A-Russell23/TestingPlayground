@@ -34,6 +34,26 @@ void AICharacter::PossessedBy(AController* NewController)
 	}
 }
 
+float AICharacter::GetHealth() const
+{
+	if (AttributeSetBase.IsValid())
+	{
+		return AttributeSetBase->GetHealth();
+	}
+
+	return 0.0f;
+}
+
+float AICharacter::GetMaxHealth() const
+{
+	if (AttributeSetBase.IsValid())
+	{
+		return AttributeSetBase->GetMaxHealth();
+	}
+
+	return 0.0f;
+}
+
 void AICharacter::BeginPlay()
 {
 	Super::BeginPlay();
