@@ -14,8 +14,8 @@ UCharacterGameplayAbility::UCharacterGameplayAbility()
 	ActivationBlockedTags.AddTag(FGameplayTag::RequestGameplayTag(FName("State.Debuff.Stun")));
 	
 
-	UGasMonitoringSubsystem* GasMonitoringSubsystem = GEngine->GetEngineSubsystem<UGasMonitoringSubsystem>();
-	addObserver(GasMonitoringSubsystem);
+	//UGasMonitoringSubsystem* GasMonitoringSubsystem = GEngine->GetEngineSubsystem<UGasMonitoringSubsystem>();
+	//addObserver(GasMonitoringSubsystem);
 	
 	
 	//UGameInstance* GameInstance = Cast<UGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
@@ -56,10 +56,13 @@ void UCharacterGameplayAbility::updateEntity(FString ability)
 	//	UGasMonitoringSubsystem* GasMonitoringSubsystem = GameInstance->GetSubsystem<UGasMonitoringSubsystem>();
 	//	GasMonitoringSubsystem->onNotify();
 	//}
-	notify();
+	//notify();
 	
 	
-	//if(GEngine)
-	//	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Activated : " + ability));	
-	
+	if(GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Activated : " + ability));
+	for (auto tag : this->AbilityTags)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Ability has tag : " + tag.ToString()));
+	}
 }

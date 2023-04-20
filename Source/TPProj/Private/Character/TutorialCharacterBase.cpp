@@ -222,7 +222,7 @@ void ATutorialCharacterBase::SetMana(float Mana)
 {
 	if (AttributeSetBase.IsValid())
 	{
-		AttributeSetBase->SetHealth(Mana);
+		AttributeSetBase->SetMana(Mana);
 	}
 }
 
