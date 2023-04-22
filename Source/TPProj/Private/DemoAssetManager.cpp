@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "TutorialAssetManager.h"
+#include "DemoAssetManager.h"
 #include "AbilitySystemGlobals.h"
 
-void UTutorialAssetManager::StartInitialLoading()
+void UDemoAssetManager::StartInitialLoading()
 {
 	Super::StartInitialLoading();
 	UAbilitySystemGlobals::Get().InitGlobalData();

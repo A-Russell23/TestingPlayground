@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Character/TutorialCharacterBase.h"
+#include "Character/DemoCharacterBase.h"
 #include "Player/DemoPlayerState.h"
 #include "DemoPlayerCharacter.generated.h"
 
@@ -11,7 +11,7 @@
  * 
  */
 UCLASS()
-class TPPROJ_API ADemoPlayerCharacter : public ATutorialCharacterBase
+class TPPROJ_API ADemoPlayerCharacter : public ADemoCharacterBase
 {
 	GENERATED_BODY()
 

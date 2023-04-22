@@ -4,13 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "Engine/AssetManager.h"
-#include "TutorialAssetManager.generated.h"
+#include "DemoAssetManager.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class TPPROJ_API UTutorialAssetManager : public UAssetManager
+class TPPROJ_API UDemoAssetManager : public UAssetManager
 {
 	GENERATED_BODY()
 
