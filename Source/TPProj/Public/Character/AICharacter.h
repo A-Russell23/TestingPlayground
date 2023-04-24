@@ -21,8 +21,6 @@ public:
 	virtual void PossessedBy(AController* NewController) override;
 
 protected:
-	bool ASCInputBound = false;
-
 	FGameplayTag DeadTag;
 
 	virtual void BeginPlay() override;

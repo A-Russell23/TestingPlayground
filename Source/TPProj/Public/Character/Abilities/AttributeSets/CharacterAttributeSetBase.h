@@ -55,7 +55,20 @@ public:
 
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
+	//virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
+
 	// Begin Subject
 	void updateEntity();
 	//End Subject
+
+
+protected:
+	
+	virtual void PreAttributeBaseChange(const FGameplayAttribute& Attribute, float& NewValue) const override;
+	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
+	
+	void ClampAttribute(const FGameplayAttribute& Attribute, float& NewValue) const;
+
+
+
 };
