@@ -46,6 +46,11 @@ void UCharacterAttributeSetBase::PreAttributeBaseChange(const FGameplayAttribute
 {
 	Super::PreAttributeBaseChange(Attribute, NewValue);
 
+	if(Attribute == GetHealthAttribute())
+	{
+		NewValue = FMath::Clamp(NewValue, 0, GetMaxHealth());
+	}
+
 	if(Attribute == GetManaAttribute())
 	{
 		NewValue = FMath::Clamp(NewValue, 0, GetMaxMana());
@@ -55,6 +60,11 @@ void UCharacterAttributeSetBase::PreAttributeBaseChange(const FGameplayAttribute
 void UCharacterAttributeSetBase::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
 {
 	Super::PreAttributeChange(Attribute, NewValue);
+
+	if(Attribute == GetHealthAttribute())
+	{
+		NewValue = FMath::Clamp(NewValue, 0, GetMaxHealth());
+	}
 
 	if(Attribute == GetManaAttribute())
 	{
