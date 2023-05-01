@@ -1,6 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "Player/DemoPlayerState.h"
 #include "Character/Abilities/AttributeSets/CharacterAttributeSetBase.h"
 #include "Character/Abilities/CharacterAbilitySystemComponent.h"

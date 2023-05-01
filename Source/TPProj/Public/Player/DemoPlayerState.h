@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -11,9 +9,6 @@
 #include "DemoPlayerState.generated.h"
 
 
-/**
- * 
- */
 UCLASS()
 class TPPROJ_API ADemoPlayerState : public APlayerState, public IAbilitySystemInterface
 {
@@ -22,9 +17,9 @@ class TPPROJ_API ADemoPlayerState : public APlayerState, public IAbilitySystemIn
 public:
 	ADemoPlayerState();
 
-	class UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
-	class UCharacterAttributeSetBase* GetAttributeSetBase() const;
+	UCharacterAttributeSetBase* GetAttributeSetBase() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Demo|DemoPlayerState")
 	bool IsAlive() const;
