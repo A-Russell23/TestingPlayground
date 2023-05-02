@@ -83,8 +83,7 @@ protected:
 	virtual void InitializeAttributes();
 
 	virtual void AddStartupEffects();
-
-
+	
 	virtual void SetHealth(float Health);
 
 	virtual void SetMana(float Mana);
