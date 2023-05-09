@@ -12,5 +12,3 @@ void ADemoPlayerController::OnPossess(APawn* InPawn)
 		PS->GetAbilitySystemComponent()->InitAbilityActorInfo(PS, InPawn);
 	}
 }
-
-
