@@ -40,6 +40,10 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "Mana", ReplicatedUsing = OnRep_MaxMana)
 	FGameplayAttributeData MaxMana;
 	ATTRIBUTE_ACCESSORS(UCharacterAttributeSetBase, MaxMana)
+
+	UPROPERTY(BlueprintReadOnly, Category = "Resistance", ReplicatedUsing = OnRep_Resistance)
+	FGameplayAttributeData Resistance;
+	ATTRIBUTE_ACCESSORS(UCharacterAttributeSetBase, Resistance)
 	
 
 	UFUNCTION()
@@ -52,6 +56,8 @@ public:
 	virtual void OnRep_Mana(const FGameplayAttributeData& OldMana);
 	UFUNCTION()
 	virtual void OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana);
+	UFUNCTION()
+	virtual void OnRep_Resistance(const FGameplayAttributeData& OldResistance);
 
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 

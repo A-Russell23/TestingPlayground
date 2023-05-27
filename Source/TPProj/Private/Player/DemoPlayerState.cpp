@@ -32,7 +32,7 @@ bool ADemoPlayerState::IsAlive() const
 
 void ADemoPlayerState::ShowAbilityConfirmCancelText(bool ShowText)
 {
-	//TODO
+	//TODO - when implementing ability cancellation
 }
 
 float ADemoPlayerState::GetHealth() const
@@ -60,6 +60,11 @@ int32 ADemoPlayerState::GetCharacterLevel() const
 	return AttributeSetBase->GetLevel();
 }
 
+int32 ADemoPlayerState::GetResistance() const
+{
+	return AttributeSetBase->GetResistance();
+}
+
 void ADemoPlayerState::BeginPlay()
 {
 	Super::BeginPlay();
@@ -71,8 +76,10 @@ void ADemoPlayerState::BeginPlay()
 		ManaChangedDelegateHandle = AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AttributeSetBase->GetManaAttribute()).AddUObject(this, &ADemoPlayerState::ManaChanged);
 		MaxManaChangedDelegateHandle = AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AttributeSetBase->GetMaxManaAttribute()).AddUObject(this, &ADemoPlayerState::MaxManaChanged);
 		CharacterLevelChangedDelegateHandle = AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AttributeSetBase->GetLevelAttribute()).AddUObject(this, &ADemoPlayerState::CharacterLevelChanged);
+		ResistanceChangedDelegateHandle = AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AttributeSetBase->GetResistanceAttribute()).AddUObject(this, &ADemoPlayerState::ResistanceChanged);
 
-		AbilitySystemComponent->RegisterGameplayTagEvent(FGameplayTag::RequestGameplayTag(FName("State.Debuff.Stun")), EGameplayTagEventType::NewOrRemoved).AddUObject(this, &ADemoPlayerState::StunTagChanged);
+		// Unused
+		//AbilitySystemComponent->RegisterGameplayTagEvent(FGameplayTag::RequestGameplayTag(FName("State.Debuff.Stun")), EGameplayTagEventType::NewOrRemoved).AddUObject(this, &ADemoPlayerState::StunTagChanged);
 	}
 }
 
@@ -101,18 +108,24 @@ void ADemoPlayerState::CharacterLevelChanged(const FOnAttributeChangeData& Data)
 	UE_LOG(LogTemp, Warning, TEXT("Character Level Changed!"));
 }
 
-void ADemoPlayerState::StunTagChanged(const FGameplayTag CallbackTag, int32 NewCount)
+void ADemoPlayerState::ResistanceChanged(const FOnAttributeChangeData& Data)
 {
-	if (NewCount > 0)
-	{
-		FGameplayTagContainer AbilityTagsToCancel;
-
-		AbilityTagsToCancel.AddTag(FGameplayTag::RequestGameplayTag(FName("Ability")));
-
-		FGameplayTagContainer AbilityTagsToIgnore;
-
-		AbilityTagsToIgnore.AddTag(FGameplayTag::RequestGameplayTag(FName("Ability.NotCanceledByStun")));
-
-		AbilitySystemComponent->CancelAbilities(&AbilityTagsToCancel, &AbilityTagsToIgnore);
-	}
+	UE_LOG(LogTemp, Warning, TEXT("Resistance Changed!"));
 }
+
+// Unused
+//void ADemoPlayerState::StunTagChanged(const FGameplayTag CallbackTag, int32 NewCount)
+//{
+//	if (NewCount > 0)
+//	{
+//		FGameplayTagContainer AbilityTagsToCancel;
+//
+//		AbilityTagsToCancel.AddTag(FGameplayTag::RequestGameplayTag(FName("Ability")));
+//
+//		FGameplayTagContainer AbilityTagsToIgnore;
+//
+//		AbilityTagsToIgnore.AddTag(FGameplayTag::RequestGameplayTag(FName("Ability.NotCanceledByStun")));
+//
+//		AbilitySystemComponent->CancelAbilities(&AbilityTagsToCancel, &AbilityTagsToIgnore);
+//	}
+//}

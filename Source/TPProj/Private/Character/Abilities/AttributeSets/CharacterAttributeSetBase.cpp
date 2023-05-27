@@ -26,6 +26,11 @@ void UCharacterAttributeSetBase::OnRep_MaxMana(const FGameplayAttributeData& Old
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UCharacterAttributeSetBase, MaxMana, OldMaxMana);
 }
 
+void UCharacterAttributeSetBase::OnRep_Resistance(const FGameplayAttributeData& OldResistance)
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UCharacterAttributeSetBase, Resistance, OldResistance);
+}
+
 void UCharacterAttributeSetBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
@@ -35,6 +40,7 @@ void UCharacterAttributeSetBase::GetLifetimeReplicatedProps(TArray<FLifetimeProp
 	DOREPLIFETIME_CONDITION_NOTIFY(UCharacterAttributeSetBase, MaxHealth, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UCharacterAttributeSetBase, Mana, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UCharacterAttributeSetBase, MaxMana, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UCharacterAttributeSetBase, Resistance, COND_None, REPNOTIFY_Always);
 }
 
 void UCharacterAttributeSetBase::updateEntity()
