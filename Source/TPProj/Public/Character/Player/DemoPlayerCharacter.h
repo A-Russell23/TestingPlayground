@@ -1,24 +1,19 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Character/TutorialCharacterBase.h"
+#include "Character/DemoCharacterBase.h"
 #include "Player/DemoPlayerState.h"
 #include "DemoPlayerCharacter.generated.h"
 
-/**
- * 
- */
 UCLASS()
-class TPPROJ_API ADemoPlayerCharacter : public ATutorialCharacterBase
+class TPPROJ_API ADemoPlayerCharacter : public ADemoCharacterBase
 {
 	GENERATED_BODY()
 
 public:
-	ADemoPlayerCharacter(const class FObjectInitializer& ObjectInitializer);
+	ADemoPlayerCharacter(const FObjectInitializer& ObjectInitializer);
 	
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 
 	virtual void PossessedBy(AController* NewController) override;
 
@@ -46,10 +41,10 @@ protected:
 	FVector StartingCameraBoomLocation;
 
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, category = "Demo|Camera")
-	class USpringArmComponent* CameraBoom;
+	USpringArmComponent* CameraBoom;
 
 	UPROPERTY(BlueprintReadOnly, category = "Demo|Camera")
-	class UCameraComponent* FollowCamera;
+	UCameraComponent* FollowCamera;
 
 	bool ASCInputBound = false;
 

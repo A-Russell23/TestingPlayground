@@ -1,6 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "Character/Abilities/AttributeSets/CharacterAttributeSetBase.h"
 #include "Net/UnrealNetwork.h"
 
@@ -29,6 +26,11 @@ void UCharacterAttributeSetBase::OnRep_MaxMana(const FGameplayAttributeData& Old
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UCharacterAttributeSetBase, MaxMana, OldMaxMana);
 }
 
+void UCharacterAttributeSetBase::OnRep_Resistance(const FGameplayAttributeData& OldResistance)
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UCharacterAttributeSetBase, Resistance, OldResistance);
+}
+
 void UCharacterAttributeSetBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
@@ -38,9 +40,40 @@ void UCharacterAttributeSetBase::GetLifetimeReplicatedProps(TArray<FLifetimeProp
 	DOREPLIFETIME_CONDITION_NOTIFY(UCharacterAttributeSetBase, MaxHealth, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UCharacterAttributeSetBase, Mana, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UCharacterAttributeSetBase, MaxMana, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UCharacterAttributeSetBase, Resistance, COND_None, REPNOTIFY_Always);
 }
 
 void UCharacterAttributeSetBase::updateEntity()
 {
 	notify();
+}
+
+void UCharacterAttributeSetBase::PreAttributeBaseChange(const FGameplayAttribute& Attribute, float& NewValue) const
+{
+	Super::PreAttributeBaseChange(Attribute, NewValue);
+
+	if(Attribute == GetHealthAttribute())
+	{
+		NewValue = FMath::Clamp(NewValue, 0, GetMaxHealth());
+	}
+
+	if(Attribute == GetManaAttribute())
+	{
+		NewValue = FMath::Clamp(NewValue, 0, GetMaxMana());
+	}
+}
+
+void UCharacterAttributeSetBase::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
+{
+	Super::PreAttributeChange(Attribute, NewValue);
+
+	if(Attribute == GetHealthAttribute())
+	{
+		NewValue = FMath::Clamp(NewValue, 0, GetMaxHealth());
+	}
+
+	if(Attribute == GetManaAttribute())
+	{
+		NewValue = FMath::Clamp(NewValue, 0, GetMaxMana());
+	}
 }

@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -8,18 +6,18 @@
 #include "AbilitySystemInterface.h"
 #include "TPProj/TPProj.h"
 
-#include "TutorialCharacterBase.generated.h"
+#include "DemoCharacterBase.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCharacterDiedDelegate, ATutorialCharacterBase*, Character);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCharacterDiedDelegate, ADemoCharacterBase*, Character);
 
 UCLASS()
-class TPPROJ_API ATutorialCharacterBase : public ACharacter, public IAbilitySystemInterface
+class TPPROJ_API ADemoCharacterBase : public ACharacter, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this character's properties
-	ATutorialCharacterBase(const class FObjectInitializer& ObjectInitializer);
+	ADemoCharacterBase(const class FObjectInitializer& ObjectInitializer);
 
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
@@ -85,8 +83,7 @@ protected:
 	virtual void InitializeAttributes();
 
 	virtual void AddStartupEffects();
-
-
+	
 	virtual void SetHealth(float Health);
 
 	virtual void SetMana(float Mana);

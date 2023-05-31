@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -11,9 +9,6 @@
 #include "DemoPlayerState.generated.h"
 
 
-/**
- * 
- */
 UCLASS()
 class TPPROJ_API ADemoPlayerState : public APlayerState, public IAbilitySystemInterface
 {
@@ -22,9 +17,9 @@ class TPPROJ_API ADemoPlayerState : public APlayerState, public IAbilitySystemIn
 public:
 	ADemoPlayerState();
 
-	class UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
-	class UCharacterAttributeSetBase* GetAttributeSetBase() const;
+	UCharacterAttributeSetBase* GetAttributeSetBase() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Demo|DemoPlayerState")
 	bool IsAlive() const;
@@ -47,6 +42,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Demo|DemoPlayerState|Attributes")
 	int32 GetCharacterLevel() const;
 
+	UFUNCTION(BlueprintCallable, Category = "Demo|DemoPlayerState|Attributes")
+	int32 GetResistance() const;
+
 protected:
 	UPROPERTY()
 	class UCharacterAbilitySystemComponent* AbilitySystemComponent;
@@ -60,6 +58,7 @@ protected:
 	FDelegateHandle ManaChangedDelegateHandle;
 	FDelegateHandle MaxManaChangedDelegateHandle;
 	FDelegateHandle CharacterLevelChangedDelegateHandle;
+	FDelegateHandle ResistanceChangedDelegateHandle;
 
 	virtual void BeginPlay() override;
 
@@ -68,6 +67,7 @@ protected:
 	virtual void ManaChanged(const FOnAttributeChangeData& Data);
 	virtual void MaxManaChanged(const FOnAttributeChangeData& Data);
 	virtual void CharacterLevelChanged(const FOnAttributeChangeData& Data);
+	virtual void ResistanceChanged(const FOnAttributeChangeData& Data);
 
-	virtual void StunTagChanged(const FGameplayTag CallbackTag, int32 NewCount);
+	//virtual void StunTagChanged(const FGameplayTag CallbackTag, int32 NewCount);
 };

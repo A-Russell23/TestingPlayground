@@ -1,6 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "Character/Player/DemoPlayerCharacter.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
@@ -12,7 +9,7 @@
 #include "Character/Abilities/CharacterAbilitySystemComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 
-ADemoPlayerCharacter::ADemoPlayerCharacter(const class FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
+ADemoPlayerCharacter::ADemoPlayerCharacter(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(FName("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);

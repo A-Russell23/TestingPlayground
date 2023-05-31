@@ -1,7 +1,6 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Character/TutorialCharacterBase.h"
+#include "Character/DemoCharacterBase.h"
 #include "Components/CapsuleComponent.h"
 #include "Character/Abilities/CharacterAbilitySystemComponent.h"
 #include "Character/Abilities/AttributeSets/CharacterAttributeSetBase.h"
@@ -9,9 +8,9 @@
 #include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
-ATutorialCharacterBase::ATutorialCharacterBase(const class FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<UCharacterMovementComponent>(ACharacter::CharacterMovementComponentName))
+ADemoCharacterBase::ADemoCharacterBase(const class FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<UCharacterMovementComponent>(ACharacter::CharacterMovementComponentName))
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+ 	// Calls tick every frame
 	PrimaryActorTick.bCanEverTick = true;
 
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Visibility, ECollisionResponse::ECR_Overlap);
@@ -24,22 +23,22 @@ ATutorialCharacterBase::ATutorialCharacterBase(const class FObjectInitializer& O
 
 }
 
-UAbilitySystemComponent* ATutorialCharacterBase::GetAbilitySystemComponent() const
+UAbilitySystemComponent* ADemoCharacterBase::GetAbilitySystemComponent() const
 {
 	return AbilitySystemComponent.Get();
 }
 
-bool ATutorialCharacterBase::IsAlive() const
+bool ADemoCharacterBase::IsAlive() const
 {
 	return GetHealth() > 0.0f;
 }
 
-int32 ATutorialCharacterBase::GetAbilityLevel(TPProjAbilityID AbilityID) const
+int32 ADemoCharacterBase::GetAbilityLevel(TPProjAbilityID AbilityID) const
 {
 	return 1;
 }
 
-void ATutorialCharacterBase::RemoveCharacterAbilities()
+void ADemoCharacterBase::RemoveCharacterAbilities()
 {
 	if (GetLocalRole() != ROLE_Authority || !AbilitySystemComponent.IsValid() || !AbilitySystemComponent->CharacterAbilitiesGiven)
 		return;
@@ -62,7 +61,7 @@ void ATutorialCharacterBase::RemoveCharacterAbilities()
 
 }
 
-float ATutorialCharacterBase::GetCharacterLevel() const
+float ADemoCharacterBase::GetCharacterLevel() const
 {
 	if (AttributeSetBase.IsValid())
 	{
@@ -72,7 +71,7 @@ float ATutorialCharacterBase::GetCharacterLevel() const
 	return 0.0f;
 }
 
-float ATutorialCharacterBase::GetHealth() const
+float ADemoCharacterBase::GetHealth() const
 {
 	if (AttributeSetBase.IsValid())
 	{
@@ -82,7 +81,7 @@ float ATutorialCharacterBase::GetHealth() const
 	return 0.0f;
 }
 
-float ATutorialCharacterBase::GetMaxHealth() const
+float ADemoCharacterBase::GetMaxHealth() const
 {
 	if (AttributeSetBase.IsValid())
 	{
@@ -92,7 +91,7 @@ float ATutorialCharacterBase::GetMaxHealth() const
 	return 0.0f;
 }
 
-float ATutorialCharacterBase::GetMana() const
+float ADemoCharacterBase::GetMana() const
 {
 	if (AttributeSetBase.IsValid())
 	{
@@ -102,7 +101,7 @@ float ATutorialCharacterBase::GetMana() const
 	return 0.0f;
 }
 
-float ATutorialCharacterBase::GetMaxMana() const
+float ADemoCharacterBase::GetMaxMana() const
 {
 	if (AttributeSetBase.IsValid())
 	{
@@ -111,7 +110,7 @@ float ATutorialCharacterBase::GetMaxMana() const
 
 	return 0.0f;
 }
-void ATutorialCharacterBase::Die()
+void ADemoCharacterBase::Die()
 {
 	RemoveCharacterAbilities();
 
@@ -142,19 +141,19 @@ void ATutorialCharacterBase::Die()
 }
 
 
-void ATutorialCharacterBase::FinishDying()
+void ADemoCharacterBase::FinishDying()
 {
 	Destroy();
 }
 
 // Called when the game starts or when spawned
-void ATutorialCharacterBase::BeginPlay()
+void ADemoCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
-void ATutorialCharacterBase::AddCharacterAbilities()
+void ADemoCharacterBase::AddCharacterAbilities()
 {
 	if (GetLocalRole() != ROLE_Authority || !AbilitySystemComponent.IsValid() || AbilitySystemComponent->CharacterAbilitiesGiven)
 		return;
@@ -167,7 +166,7 @@ void ATutorialCharacterBase::AddCharacterAbilities()
 	AbilitySystemComponent->CharacterAbilitiesGiven = true;
 }
 
-void ATutorialCharacterBase::InitializeAttributes()
+void ADemoCharacterBase::InitializeAttributes()
 {
 	if (!AbilitySystemComponent.IsValid())
 	{
@@ -190,7 +189,7 @@ void ATutorialCharacterBase::InitializeAttributes()
 	}
 }
 
-void ATutorialCharacterBase::AddStartupEffects()
+void ADemoCharacterBase::AddStartupEffects()
 {
 	if (GetLocalRole() != ROLE_Authority || !AbilitySystemComponent.IsValid() || AbilitySystemComponent->StartupEffectsApplied)
 		return;
@@ -210,7 +209,7 @@ void ATutorialCharacterBase::AddStartupEffects()
 	AbilitySystemComponent->StartupEffectsApplied = true;
 }
 
-void ATutorialCharacterBase::SetHealth(float Health)
+void ADemoCharacterBase::SetHealth(float Health)
 {
 	if (AttributeSetBase.IsValid())
 	{
@@ -218,7 +217,7 @@ void ATutorialCharacterBase::SetHealth(float Health)
 	}
 }
 
-void ATutorialCharacterBase::SetMana(float Mana)
+void ADemoCharacterBase::SetMana(float Mana)
 {
 	if (AttributeSetBase.IsValid())
 	{
